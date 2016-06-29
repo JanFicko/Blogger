@@ -19,8 +19,3 @@
     {!! $name !!} {!! $surname !!}
 
 @stop
-
-<?php
-
-        echo storage_path();
-        ?>

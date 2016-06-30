@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <h1>Articles</h1>
-
+    <h1>Articles</h1> <br/>
+    <a href="articles/create">Create new</a>
     <hr />
 
     @foreach ($articles as $article)

@@ -12,8 +12,12 @@
 */
 
 Route::get('/', 'PagesController@index');
+
 Route::get('contact', 'PagesController@Contact');
+
 Route::get('about', 'PagesController@About');
 
 Route::get('articles', 'ArticlesController@index');
+Route::get('articles/create', 'ArticlesController@create');
 Route::get('articles/{id}', 'ArticlesController@show');
+Route::post('articles', 'ArticlesController@store');

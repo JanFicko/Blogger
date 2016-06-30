@@ -6,7 +6,7 @@
 
     @yield('cssblock')
 
-    <link rel="stylesheet" href="css/style.css">
+    {{ HTML::style('css/bootstrap.min.css') }}
 
 </head>
 <body>
@@ -14,6 +14,8 @@
 @yield('content')
 
 @yield('jsblock')
+
+{{ HTML::script('js/bootstrap.min.js') }}
 
 </body>
 </html>

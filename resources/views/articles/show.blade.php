@@ -2,7 +2,11 @@
 
 @section('content')
 
-    <h1>{{ $article->title }}</h1>
+    <h1>{{ $article->title }}</h1> <br/>
+
+    <a href="{{ $article->id }}/edit">Edit article</a>
+
+    <hr />
 
     <article>
 

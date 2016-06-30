@@ -17,7 +17,15 @@ Route::get('contact', 'PagesController@Contact');
 
 Route::get('about', 'PagesController@About');
 
+/*
 Route::get('articles', 'ArticlesController@index');
 Route::get('articles/create', 'ArticlesController@create');
 Route::get('articles/{id}', 'ArticlesController@show');
 Route::post('articles', 'ArticlesController@store');
+Route::get('articles/{id}/edit', 'ArticlesController@edit');
+Route::get('articles/{id}', 'ArticlesController@update');
+Route::get('articles/{id}', 'ArticlesController@destroy');*/
+
+
+// Calls same routes as all of the ARTICLES routes above
+Route::resource('articles', 'ArticlesController');

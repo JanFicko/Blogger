@@ -29,3 +29,11 @@ Route::get('articles/{id}', 'ArticlesController@destroy');*/
 
 // Calls same routes as all of the ARTICLES routes above
 Route::resource('articles', 'ArticlesController');
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

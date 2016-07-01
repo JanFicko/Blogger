@@ -37,3 +37,9 @@ Route::controllers([
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+
+//Route::get('/admin', ['middleware' => 'auth', 'uses' => 'AdminController@index']);
+Route::get('/admin', ['middleware'=>'admin', function(){
+    return 'In development.';
+}]);

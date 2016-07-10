@@ -93,6 +93,13 @@ class ArticlesController extends Controller
         return redirect('articles');
     }
 
+
+    /**
+     * Change data to existing object
+     *
+     * @param $id
+     * @return $this
+     */
     public function edit($id){
         $article = Article::findOrFail($id);
         return view('articles.edit')->with('article', $article);

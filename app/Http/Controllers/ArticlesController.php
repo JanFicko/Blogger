@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Http\Requests\ArticleRequest;
+use App\Tag;
 use Carbon\Carbon;
 
 use App\Http\Requests;
@@ -55,7 +56,8 @@ class ArticlesController extends Controller
      * @return Response
      */
     public function create(){
-        return view('articles.create');
+        $tags = Tag::lists('name', 'id');
+        return view('articles.create')->with('tags', $tags);
     }
 
 
@@ -86,9 +88,12 @@ class ArticlesController extends Controller
         Article::create($request->all());
         */
 
-        $article = new Article($request->all());
 
-        Auth::user()->articles()->save($article);
+        $article = Auth::user()->articles()->create($request->all());
+
+        $tagIds = $request->input('tags');
+
+        $article->tags()->attach($request->input('tag_list'));
 
         //\Session::flash('flash_message', 'Your article has been created!');
         flash('Your article has been created!');
@@ -98,18 +103,26 @@ class ArticlesController extends Controller
 
 
     /**
-     * Change data to existing object
+     * Change data to existing object.
      *
      * @param $id
      * @return $this
      */
-    public function edit($id){
-        $article = Article::findOrFail($id);
-        return view('articles.edit')->with('article', $article);
+    public function edit(Article $article){
+        $article = Article::findOrFail($article->id);
+        $tags = Tag::lists('name', 'id');
+        return view('articles.edit')->with('article', $article)->with('tags', $tags);
     }
 
-    public function update($id, ArticleRequest $request){
-        $article = Article::findOrFail($id);
+    /**
+     * Save changed data.
+     *
+     * @param $id
+     * @param ArticleRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(Article $article, ArticleRequest $request){
+        $article = Article::findOrFail($article->id);
         $article->update($request->all());
 
         return redirect('articles');

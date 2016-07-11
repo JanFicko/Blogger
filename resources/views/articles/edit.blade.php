@@ -6,10 +6,10 @@
 
     {!! Form::model($article, ['method' => 'PATCH', 'url' => 'articles/' . $article->id]) !!}
 
-        @include('articles._form', ['submitButtonText' => 'Update article']);
+        @include('articles._form', ['submitButtonText' => 'Update article'])
 
     {!! Form::close() !!}
 
-    @include('errors.list');
+    @include('errors.list')
 
 @stop

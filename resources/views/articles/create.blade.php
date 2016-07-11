@@ -8,10 +8,10 @@
 
     {!! Form::open(['url' => 'articles']) !!}
 
-        @include('articles._form', ['submitButtonText' => 'Add article']);
+        @include('articles._form', ['submitButtonText' => 'Add article'])
 
     {!! Form::close() !!}
 
-    @include('errors.list');
+    @include('errors.list')
 
 @stop

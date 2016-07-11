@@ -35,11 +35,11 @@ class ArticlesController extends Controller
     /**
      * Show single article
      *
-     * @param $id
-     * @return Response
+     * @param Article $article
+     * @return $this
      */
-    public function show($id){
-        $article = Article::findOrFail($id);
+    public function show(Article $article){ //Replace $id for Article $article
+        //$article = Article::findOrFail($id);
 
         /*if(is_null($article)){
             abort(404);
@@ -89,6 +89,9 @@ class ArticlesController extends Controller
         $article = new Article($request->all());
 
         Auth::user()->articles()->save($article);
+
+        //\Session::flash('flash_message', 'Your article has been created!');
+        flash('Your article has been created!');
 
         return redirect('articles');
     }

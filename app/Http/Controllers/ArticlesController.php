@@ -88,10 +88,7 @@ class ArticlesController extends Controller
         Article::create($request->all());
         */
 
-
         $article = Auth::user()->articles()->create($request->all());
-
-        $tagIds = $request->input('tags');
 
         $article->tags()->attach($request->input('tag_list'));
 
@@ -124,6 +121,8 @@ class ArticlesController extends Controller
     public function update(Article $article, ArticleRequest $request){
         $article = Article::findOrFail($article->id);
         $article->update($request->all());
+
+        $article->tags()->sync($request->input('tag_list'));
 
         return redirect('articles');
     }
